@@ -1,0 +1,29 @@
+# Build output
+bin/
+obj/
+
+# IDE files
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+**/[Pp]ackages/*/
+
+# Publish output
+publish/
+**/Properties/PublishProfiles/
+
+# OS junk
+.DS_Store
+Thumbs.db
+Plus project-specific ones for yours:
+# Local secrets — keep API keys out of git!
+appsettings.Development.json
+
+# Local database
+*.db
