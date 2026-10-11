@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MovieControllerApi.Models;
 using MovieControllerApi.Services;
 
 namespace MovieControllerApi.Controllers;
@@ -64,7 +65,11 @@ public class MovieController : ControllerBase
         }
         if(!string.IsNullOrEmpty(format))
         {
-            query = query.Where(movie => movie.Format.Contains(format));
+            if(!Enum.TryParse<FormatType>(format, true, out var fmt))
+            {
+                return BadRequest($"Unknown format: {format}");
+            }
+            query = query.Where(movie => movie.Format.Contains(fmt));
         }
         if(!string.IsNullOrEmpty(genre))
         {

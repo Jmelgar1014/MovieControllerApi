@@ -26,7 +26,10 @@ namespace MovieControllerApi.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Format")
+                    b.Property<bool>("Favorites")
+                        .HasColumnType("INTEGER");
+
+                    b.PrimitiveCollection<string>("Format")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -37,6 +40,9 @@ namespace MovieControllerApi.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("WatchedMovie")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

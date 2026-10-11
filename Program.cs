@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using MovieControllerApi;
 using MovieControllerApi.Services;
@@ -20,6 +21,8 @@ builder.Services.AddHttpClient<TmdbService>(client =>
     client.BaseAddress = new Uri ("https://api.themoviedb.org/3/");
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", builder.Configuration["Tmdb:ApiKey"]);
 });
+
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Configuration.AddJsonFile("appsettings.json");
 
