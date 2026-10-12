@@ -116,4 +116,18 @@ public class MovieController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPut("{id}/watched")]
+    public async Task<ActionResult> UpdateWatched(int id, [FromBody] bool watched)
+    {
+        var movie = await _context.Movies.FindAsync(id);
+
+        if(movie == null) return NotFound();
+
+        movie.WatchedMovie = watched;
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
